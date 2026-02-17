@@ -12,6 +12,10 @@ lineNumbers: true
 
 An Agentic AI System for Comfort-Optimized Itineraries
 
+<!--
+Good morning/afternoon everyone. Today I'll be presenting our project proposal: The Fatigue-Aware Slow Travel Agent — an agentic AI system designed to optimize travel itineraries not for speed, but for physical comfort and experience quality. This project is powered by three key technologies: LangGraph for the agent framework, Browser-use for real-time web data, and the Amap API for geolocation services.
+-->
+
 ---
 layout: intro
 ---
@@ -24,6 +28,10 @@ layout: intro
 - ## **Timeline** — 10-Week Delivery Schedule
 - ## **References** — Key Literature & Tools
 
+<!--
+Here's the roadmap for today's presentation. I'll start with the problem we're trying to solve, then walk through our objectives, the detailed research plan broken into four tasks, our 10-week timeline, and finally the references that ground this work.
+-->
+
 ---
 layout: section
 ---
@@ -31,6 +39,10 @@ layout: section
 # Introduction
 
 Problem Background & Motivation
+
+<!--
+Let's begin with the problem background and what motivated this project.
+-->
 
 ---
 layout: two-cols-header
@@ -53,6 +65,12 @@ layout: two-cols-header
 - Optimize solely for **distance or popularity**
 - Ignore traveler's **real-time physical state**
 - No awareness of **fatigue accumulation**
+
+<!--
+After the pandemic, a trend called "Special Forces Tourism" emerged — travelers try to visit as many attractions as possible in the shortest time. While time-efficient, this leads to exhaustion and very shallow cultural engagement. It goes against the philosophy of Slow Travel, which values pacing, sustainability, and meaningful connection with local environments.
+
+On the technical side, traditional travel recommendation systems only optimize for distance or popularity. They have no concept of how tired the traveler actually is. There's no fatigue tracking, no adaptive re-planning — just a static list of places ordered by proximity.
+-->
 
 ---
 layout: two-cols-header
@@ -80,6 +98,12 @@ layout: two-cols-header
 - **Browser-use** — CV-based web browsing for real-time data
 - **Amap API** — Precise geocoding & route planning
 
+<!--
+So why use LLM-powered agents instead of traditional algorithms? The table on the left summarizes the key differences. Traditional systems use fixed rules and are stateless — they can't adapt mid-trip. LLM agents, on the other hand, can reason adaptively, maintain stateful memory of the traveler's condition, use multiple tools simultaneously, and self-correct when things go wrong — like a sold-out ticket or sudden rain.
+
+The four key technologies enabling this are: the ReAct framework for combining reasoning with action, LangGraph for building stateful cyclic workflows, Browser-use for automated web browsing with computer vision, and the Amap API for accurate Chinese map data and route planning.
+-->
+
 ---
 
 # Our Proposed Solution
@@ -104,6 +128,12 @@ graph LR
 
 > **Core Idea**: Maintain a stateful **fatigue metric** (step count + transit time) and dynamically insert rest nodes when thresholds are exceeded.
 
+<!--
+This diagram shows the core loop of our proposed agent. The user provides their preferences, and the Planner Node generates an initial route. Before each next attraction, the Fatigue Monitor checks the cumulative step count. If it exceeds the threshold — say 15,000 steps — instead of pushing to the next attraction, the agent routes to a Rest Finder Node that locates a nearby café or park. After resting, it returns to the planner to continue.
+
+There's also a ticket availability check — if a ticket is sold out, the agent loops back to the planner to pick an alternative. This cyclic, self-correcting behavior is what makes it fundamentally different from a static itinerary.
+-->
+
 ---
 layout: section
 ---
@@ -111,6 +141,10 @@ layout: section
 # Objectives
 
 What We Aim to Build
+
+<!--
+Now let me outline the four specific objectives of this project. Our primary goal is to build an Agentic AI system that optimizes travel itineraries for physical comfort and experience quality, rather than just speed.
+-->
 
 ---
 layout: two-cols-header
@@ -138,6 +172,16 @@ Move beyond linear chains → create a **cyclic graph architecture** enabling se
 
 Deploy a **Streamlit UI** that visualizes the "slow travel" logic, showing users **where and why** rest stops were added.
 
+<!--
+Objective 1 is the fatigue-adaptive logic — the core state machine that monitors cumulative walking distance and triggers rest interventions. We're using 15,000 steps as our initial threshold, which is roughly 10 to 12 kilometers of walking.
+
+Objective 2 is multi-modal tool usage — combining structured data from the Amap API with unstructured data scraped from the web via Browser-use, such as real-time crowd levels and ticket availability.
+
+Objective 3 is about the architecture itself — using LangGraph to build a cyclic graph, not a linear chain. This allows the agent to loop back, re-plan, and self-correct based on real-time feedback.
+
+Objective 4 is the human-centric interface — a Streamlit dashboard that doesn't just show the route, but explicitly visualizes where rest stops were inserted and why the agent made those decisions. Transparency is key.
+-->
+
 ---
 layout: section
 ---
@@ -145,6 +189,10 @@ layout: section
 # Research Plan
 
 Tasks & Methodology
+
+<!--
+Let me now walk through the research plan, which is divided into four main tasks.
+-->
 
 ---
 layout: two-cols-header
@@ -205,6 +253,12 @@ graph TD
     style V fill:#7950f2,color:#fff
 ```
 
+<!--
+Task 1 is about building the foundational tools. On the left, Subtask 1.1 involves writing Python wrappers around the Amap Web Service API. We need three main functions: geocoding to convert addresses to coordinates, walking route planning to estimate distances and step counts, and traffic status queries. You can see a simplified version of the client class here.
+
+On the right, Subtask 1.2 is the Browser-use integration. This uses a vision-language model like GPT-4o to automate web browsing — the agent can navigate to a scenic spot's website, read whether tickets are available, check weather warnings, or even assess crowd density from live camera feeds. This is the "eyes" of our agent.
+-->
+
 ---
 
 # Task 2: Agent Architecture (LangGraph)
@@ -239,6 +293,12 @@ graph LR
     style Planner fill:#339af0,color:#fff
 ```
 
+<!--
+Task 2 is the core agent architecture using LangGraph. Subtask 2.1 defines the AgentState schema — this is the shared state that flows through every node in the graph. It tracks the itinerary, cumulative step count, a normalized fatigue level, weather constraints, current location, visited POIs, and how many rest stops have been inserted.
+
+Subtask 2.2 implements the actual node logic. The Planner Node generates or updates the route. The Fatigue Monitor is a conditional node — it checks the step count against the threshold. If exceeded, the workflow routes to the Coffee/Rest Finder node, which searches for nearby rest options using the Amap API. After rest, control loops back to the Planner. This cyclic structure is a key advantage of LangGraph over simple linear chains.
+-->
+
 ---
 layout: two-cols-header
 ---
@@ -271,6 +331,12 @@ Key conditional routing logic:
 
 </div>
 
+<!--
+Task 3 brings everything together. Subtask 3.1 is about wiring the complete graph with conditional edges. Beyond the fatigue check, we handle sold-out tickets by rerouting to the planner for alternatives, bad weather by swapping outdoor attractions for indoor ones, and a graceful end condition when all POIs are visited.
+
+Subtask 3.2 is what we call "Anti-Special Forces" prompt engineering. We carefully design the system prompts so the LLM prioritizes relaxed pacing, suggests local hidden gems like neighborhood cafés and markets, respects the daily step budget, and creates natural transitions to rest stops — not jarring interruptions. The agent should feel like a thoughtful local friend guiding you, not a robot maximizing efficiency.
+-->
+
 ---
 layout: two-cols-header
 ---
@@ -301,6 +367,12 @@ Compare against standard "greedy" algorithms:
 | Re-planning Rate | 0% | Dynamic |
 | User Fatigue Score | High | Low |
 
+<!--
+Task 4 covers evaluation and the user interface. The Streamlit dashboard will show an interactive map with the route and rest stops clearly marked, a fatigue curve graph showing energy levels throughout the day, a log of all re-planning events so users can see the agent's decision-making, and controls to adjust the fatigue threshold.
+
+For evaluation, we'll run simulation tests comparing our agent against a standard greedy algorithm that just picks the nearest unvisited attraction. We expect to see daily steps reduced from around 25,000 to under 15,000, rest stops increasing from near zero to 3-5 per day, and overall fatigue scores dropping significantly. The re-planning rate is dynamic — it activates only when conditions require it.
+-->
+
 ---
 layout: section
 ---
@@ -308,6 +380,10 @@ layout: section
 # Timeline
 
 10-Week Delivery Schedule
+
+<!--
+Let me now show you our delivery timeline.
+-->
 
 ---
 
@@ -322,6 +398,10 @@ layout: section
 | 9 | Testing & Refinement | Performance Report |
 | 10 | Final Submission | Project Report & Presentation Deck |
 
+<!--
+The project spans 10 weeks. Weeks 1-2 focus on the literature review and designing the LangGraph architecture diagram. Weeks 3-4 are for implementing the Amap API wrappers and Browser-use modules — the tools the agent will use. Weeks 5-6 are dedicated to the core agent development, specifically getting the fatigue monitoring logic working as a prototype. Weeks 7-8 integrate everything and build the Streamlit web interface. Week 9 is for testing, running comparison experiments against the greedy baseline, and refinement. Week 10 is final submission — the project report and this presentation deck.
+-->
+
 ---
 layout: section
 ---
@@ -329,6 +409,10 @@ layout: section
 # References
 
 Key Literature & Tools
+
+<!--
+Finally, here are the key references that support this project.
+-->
 
 ---
 
@@ -356,6 +440,10 @@ Key Literature & Tools
 
 </div>
 
+<!--
+The references span three areas. For Slow Travel and tourism theory, we draw on Cheer et al. on overtourism, Dickinson et al. on slow travel principles, and Lim et al.'s survey on itinerary planning algorithms. For LLM agents, we reference the comprehensive agent survey by Xi et al., the Toolformer paper on tool use, and the ReAct paper which is the reasoning framework we build on. Finally, the three tools: LangGraph for the agent framework, Browser-use for web automation, and the Amap API for map services.
+-->
+
 ---
 layout: center
 class: text-center
@@ -364,3 +452,7 @@ class: text-center
 # Thank You
 
 Questions & Discussion
+
+<!--
+That concludes my presentation. Thank you for your attention. I'm happy to take any questions about the architecture, the fatigue model, or any other aspect of the project.
+-->
