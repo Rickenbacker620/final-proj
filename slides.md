@@ -13,7 +13,7 @@ lineNumbers: true
 An Agentic AI System for Comfort-Optimized Itineraries
 
 <!--
-Good morning/afternoon everyone. Today I'll be presenting our project proposal: The Fatigue-Aware Slow Travel Agent — an agentic AI system designed to optimize travel itineraries not for speed, but for physical comfort and experience quality. This project is powered by three key technologies: LangGraph for the agent framework, Browser-use for real-time web data, and the Amap API for geolocation services.
+Good morning/afternoon everyone. Today we'll be presenting our project proposal: The Fatigue-Aware Slow Travel Agent — an agentic AI system designed to optimize travel itineraries not for speed, but for physical comfort and experience quality. This project is powered by three key technologies: LangGraph for the agent framework, Browser-use for real-time web data, and the Amap API for geolocation services.
 -->
 
 ---
@@ -29,7 +29,7 @@ layout: intro
 - ## **References** — Key Literature & Tools
 
 <!--
-Here's the roadmap for today's presentation. I'll start with the problem we're trying to solve, then walk through our objectives, the detailed research plan broken into four tasks, our 10-week timeline, and finally the references that ground this work.
+Here's the roadmap for today's presentation. We'll start with the problem we're trying to solve, then walk through our objectives, the detailed research plan broken into four tasks, our 10-week timeline, and finally the references that ground this work.
 -->
 
 ---
@@ -143,7 +143,7 @@ layout: section
 What We Aim to Build
 
 <!--
-Now let me outline the four specific objectives of this project. Our primary goal is to build an Agentic AI system that optimizes travel itineraries for physical comfort and experience quality, rather than just speed.
+Now let us outline the four specific objectives of this project. Our primary goal is to build an Agentic AI system that optimizes travel itineraries for physical comfort and experience quality, rather than just speed.
 -->
 
 ---
@@ -191,7 +191,7 @@ layout: section
 Tasks & Methodology
 
 <!--
-Let me now walk through the research plan, which is divided into four main tasks.
+Let us now walk through the research plan, which is divided into four main tasks.
 -->
 
 ---
@@ -382,7 +382,7 @@ layout: section
 10-Week Delivery Schedule
 
 <!--
-Let me now show you our delivery timeline.
+Let us now show you our delivery timeline.
 -->
 
 ---
@@ -454,5 +454,5 @@ class: text-center
 Questions & Discussion
 
 <!--
-That concludes my presentation. Thank you for your attention. I'm happy to take any questions about the architecture, the fatigue model, or any other aspect of the project.
+That concludes our presentation. Thank you for your attention. We're happy to take any questions about the architecture, the fatigue model, or any other aspect of the project.
 -->
