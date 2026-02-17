@@ -396,7 +396,7 @@ Let us now show you our delivery timeline.
 
 | Week | Task | Deliverable |
 |------|------|-------------|
-| 1-2 | Theoretical Framework | Literature Review & Architecture Diagram |
+| 1-2 | Theoretical Framework | Background Research  & Architecture Diagram |
 | 3-4 | Tool Implementation | Functional Amap API & Browser-use modules |
 | 5-6 | Core Agent Development | Working "Fatigue Monitoring" prototype |
 | 7-8 | Integration & UI | Streamlit Web App v1.0 |
@@ -404,7 +404,7 @@ Let us now show you our delivery timeline.
 | 10 | Final Submission | Project Report & Presentation Deck |
 
 <!--
-The project spans 10 weeks. Weeks 1-2 focus on the literature review and designing the LangGraph architecture diagram. Weeks 3-4 are for implementing the Amap API wrappers and Browser-use modules — the tools the agent will use. Weeks 5-6 are dedicated to the core agent development, specifically getting the fatigue monitoring logic working as a prototype. Weeks 7-8 integrate everything and build the Streamlit web interface. Week 9 is for testing, running comparison experiments against the greedy baseline, and refinement. Week 10 is final submission — the project report and this presentation deck.
+The project spans 10 weeks. Weeks 1-2 focus on the background research and designing the LangGraph architecture diagram. Weeks 3-4 are for implementing the Amap API wrappers and Browser-use modules — the tools the agent will use. Weeks 5-6 are dedicated to the core agent development, specifically getting the fatigue monitoring logic working as a prototype. Weeks 7-8 integrate everything and build the Streamlit web interface. Week 9 is for testing, running comparison experiments against the greedy baseline, and refinement. Week 10 is final submission — the project report and this presentation deck.
 -->
 
 ---
@@ -445,9 +445,6 @@ Finally, here are the key references that support this project.
 
 </div>
 
-<!--
-The references span three areas. For Slow Travel and tourism theory, we draw on Cheer et al. on overtourism, Dickinson et al. on slow travel principles, and Lim et al.'s survey on itinerary planning algorithms. For LLM agents, we reference the comprehensive agent survey by Xi et al., the Toolformer paper on tool use, and the ReAct paper which is the reasoning framework we build on. Finally, the three tools: LangGraph for the agent framework, Browser-use for web automation, and the Amap API for map services.
--->
 
 ---
 layout: center
