@@ -12,6 +12,11 @@ lineNumbers: true
 
 An Agentic AI System for Comfort-Optimized Itineraries
 
+<div class="absolute bottom-10 right-10 text-sm opacity-75">
+  Team 405
+</div>
+
+
 <!--
 Good morning/afternoon everyone. Today we'll be presenting our project proposal: The Fatigue-Aware Slow Travel Agent — an agentic AI system designed to optimize travel itineraries not for speed, but for physical comfort and experience quality. This project is powered by three key technologies: LangGraph for the agent framework, Browser-use for real-time web data, and the Amap API for geolocation services.
 -->
